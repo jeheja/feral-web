@@ -73,8 +73,8 @@ body:has(.mx_AuthPage) {
   color: rgba(255, 248, 231, 0.5);
 }
 
-/* Primary button with golden style */
-.mx_AccessibleButton_kind_primary {
+/* Primary button with golden style - but exclude call buttons */
+.mx_AccessibleButton_kind_primary:not(.mx_LegacyCallEvent_silence):not(.mx_LegacyCallEvent_unSilence):not(.mx_LegacyCallEvent_answerButton):not(.mx_LegacyCallEvent_rejectButton):not(.mx_CallEvent_Button) {
   background: var(--feral-golden) !important;
   color: var(--feral-deep-forest) !important;
   font-weight: 600;
@@ -82,10 +82,27 @@ body:has(.mx_AuthPage) {
   transition: all 0.3s ease;
 }
 
-.mx_AccessibleButton_kind_primary:hover {
+.mx_AccessibleButton_kind_primary:not(.mx_LegacyCallEvent_silence):not(.mx_LegacyCallEvent_unSilence):not(.mx_LegacyCallEvent_answerButton):not(.mx_LegacyCallEvent_rejectButton):not(.mx_CallEvent_Button):hover {
   background: var(--feral-golden-bright) !important;
   box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
   transform: translateY(-2px);
+}
+
+/* Keep call buttons in their default green color */
+.mx_LegacyCallEvent_answerButton,
+.mx_LegacyCallEvent_answerButton:hover,
+.mx_CallEvent_Button.mx_CallEvent_Button_answer,
+.mx_CallEvent_Button.mx_CallEvent_Button_answer:hover {
+  background: var(--cpd-color-bg-action-primary-rest) !important;
+  color: white !important;
+}
+
+.mx_LegacyCallEvent_rejectButton,
+.mx_LegacyCallEvent_rejectButton:hover,
+.mx_CallEvent_Button.mx_CallEvent_Button_reject,
+.mx_CallEvent_Button.mx_CallEvent_Button_reject:hover {
+  background: var(--cpd-color-bg-critical-primary) !important;
+  color: white !important;
 }
 
 /* Link buttons with golden color */
@@ -185,6 +202,42 @@ body:has(.mx_AuthPage) {
   margin-top: auto;
 }
 
+/* HomePage logo styling - make it 200px */
+.mx_HomePage_default img {
+  height: 200px !important;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+  margin-bottom: 20px;
+}
+
+/* HomePage title styling to match Feral theme */
+.mx_HomePage_default h1 {
+  color: var(--feral-deep-forest);
+  font-size: 36px !important;
+  margin-top: 20px;
+}
+
+.mx_HomePage_default h2 {
+  color: var(--feral-moss-green);
+  font-size: 20px !important;
+}
+
+/* HomePage buttons with Feral theme */
+.mx_HomePage_default_buttons .mx_AccessibleButton {
+  background-color: var(--feral-golden) !important;
+  color: var(--feral-deep-forest) !important;
+  transition: all 0.3s ease;
+}
+
+.mx_HomePage_default_buttons .mx_AccessibleButton:hover {
+  background-color: var(--feral-golden-bright) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+}
+
+.mx_HomePage_default_buttons .mx_AccessibleButton::before {
+  background-color: var(--feral-deep-forest) !important;
+}
+
 /* Responsive adjustments */
 @media only screen and (max-width: 768px) {
   .mx_AuthHeaderLogo img {
@@ -194,5 +247,9 @@ body:has(.mx_AuthPage) {
   .mx_AuthPage_modal {
     margin: 20px;
     border-radius: 16px;
+  }
+  
+  .mx_HomePage_default img {
+    height: 120px !important;
   }
 }
