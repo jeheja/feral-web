@@ -31,6 +31,7 @@ import AccessibleButton, { type ButtonEvent } from "../../views/elements/Accessi
 import { type ValidatedServerConfig } from "../../../utils/ValidatedServerConfig";
 import { filterBoolean } from "../../../utils/arrays";
 import { startOidcLogin } from "../../../utils/oidc/authorize";
+import SdkConfig from "../../../SdkConfig";
 
 interface IProps {
     serverConfig: ValidatedServerConfig;
