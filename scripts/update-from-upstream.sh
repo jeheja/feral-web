@@ -6,12 +6,12 @@ set -e
 echo "=== Feral Web Upstream Update Script ==="
 echo
 
-# Check if we're on the feral-customizations branch
+# Check if we're on the feral-customizations-stable branch
 CURRENT_BRANCH=$(git branch --show-current)
-if [ "$CURRENT_BRANCH" != "feral-customizations" ]; then
-    echo "ERROR: You must be on the 'feral-customizations' branch"
+if [ "$CURRENT_BRANCH" != "feral-customizations-stable" ]; then
+    echo "ERROR: You must be on the 'feral-customizations-stable' branch"
     echo "Current branch: $CURRENT_BRANCH"
-    echo "Run: git checkout feral-customizations"
+    echo "Run: git checkout feral-customizations-stable"
     exit 1
 fi
 
@@ -39,15 +39,17 @@ echo "3. Merging upstream changes..."
 git merge upstream/develop
 
 echo
-echo "4. Returning to feral-customizations branch..."
-git checkout feral-customizations
+echo "4. Returning to feral-customizations-stable branch..."
+git checkout feral-customizations-stable
 
 echo
-echo "5. Rebasing customizations on top of latest upstream..."
+echo "5. Rebasing customizations on top of latest upstream stable release..."
 echo "   If there are conflicts, resolve them and run:"
 echo "   git rebase --continue"
 echo
-git rebase develop
+LATEST_TAG=$(git tag | grep -v rc | sort -V | tail -1)
+echo "   Rebasing on latest stable tag: $LATEST_TAG"
+git rebase $LATEST_TAG
 
 echo
 echo "=== Update Complete ==="

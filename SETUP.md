@@ -2,11 +2,11 @@
 
 ## Quick Start
 
-1. **Clone and checkout the customizations branch**
+1. **Clone and checkout the stable customizations branch**
    ```bash
    git clone <repository-url>
    cd feral-web
-   git checkout feral-customizations
+   git checkout feral-customizations-stable
    ```
 
 2. **Configure for your region**
