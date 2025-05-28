@@ -1,8 +1,8 @@
 {
-    "name": "Element",
-    "short_name": "Element",
+    "name": "Feral",
+    "short_name": "Feral",
     "display": "standalone",
-    "theme_color": "#76CFA6",
+    "theme_color": "#D4AF37",
     "start_url": "index.html",
     "icons": [
         {
