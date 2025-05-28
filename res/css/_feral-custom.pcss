@@ -117,17 +117,19 @@ body:has(.mx_AuthPage) {
   color: #ff6b6b;
 }
 
-/* Auth header logo styling */
+/* Auth header logo styling - override Element defaults */
 .mx_AuthHeaderLogo {
+  margin-top: 0 !important;
+  padding: 0 !important;
+  flex: none !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
+  margin-bottom: 30px;
 }
 
 .mx_AuthHeaderLogo img {
-  max-height: 120px !important;
+  max-height: 100px !important;
   width: auto !important;
   display: block;
 }
