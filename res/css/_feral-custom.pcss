@@ -13,33 +13,27 @@ Feral Custom Styling
   --feral-moss-green: #4A5D3A;
 }
 
+/* Prevent body scroll on auth pages */
+body:has(.mx_AuthPage) {
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+}
+
 /* Override auth page background with Feral forest gradient */
 .mx_AuthPage {
   background: linear-gradient(135deg, var(--feral-deep-forest) 0%, var(--feral-forest-shadow) 100%) !important;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Animated floating particles effect */
-.mx_AuthPage::before {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(135, 169, 107, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(255, 248, 231, 0.05) 0%, transparent 50%);
-  animation: float 20s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
-}
+/* Remove animation - just keep static gradient background */
 
 /* Glass morphism effect for auth modal */
 .mx_AuthPage_modal {
@@ -124,10 +118,18 @@ Feral Custom Styling
 }
 
 /* Auth header logo styling */
+.mx_AuthHeaderLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
 .mx_AuthHeaderLogo img {
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
-  max-height: 80px;
-  width: auto;
+  max-height: 120px !important;
+  width: auto !important;
+  display: block;
 }
 
 /* External signup button styling */
@@ -164,6 +166,11 @@ Feral Custom Styling
 
 /* Hide the original create account link when registration is disabled */
 .mx_Login .mx_AuthBody_changeFlow {
+  display: none;
+}
+
+/* Hide the Powered by Matrix link in footer */
+.mx_AuthFooter {
   display: none;
 }
 
