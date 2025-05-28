@@ -1,0 +1,22 @@
+diff --git a/src/vector/index.ts b/src/vector/index.ts
+index abc123..def456 100644
+--- a/src/vector/index.ts
++++ b/src/vector/index.ts
+@@ -17,6 +17,7 @@ import { shouldPolyfill as shouldPolyFillIntlSegmenter } from "@formatjs/intl-s
+ import { parseQsFromFragment } from "./url_utils";
+ import "./modernizr";
+ 
++import { enforceDesktopOnly } from "./desktop-only-check";
+ // Require common CSS here; this will make webpack process it into bundle.css.
+ // Our own CSS (which is themed) is imported via separate webpack entry points
+ // in webpack.config.js
+@@ -112,6 +113,9 @@ async function start(): Promise<void> {
+         return showError(_t("error|browser_unsupported"));
+     }
+ 
++    // Check if running in desktop app
++    enforceDesktopOnly();
++
+     // React depends on Map & Set which we check for using modernizr's es6collections
+     // if modernizr fails we may not have a functional react to show the error message.
+     // try in react but fallback to an `alert`
