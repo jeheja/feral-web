@@ -511,21 +511,26 @@ export default class LoginComponent extends React.PureComponent<IProps, IState> 
                 </div>
             );
         } else if (SettingsStore.getValue(UIFeature.Registration)) {
-            footer = (
-                <span className="mx_AuthBody_changeFlow">
-                    {_t(
-                        "auth|create_account_prompt",
-                        {},
-                        {
-                            a: (sub) => (
-                                <AccessibleButton kind="link_inline" onClick={this.onTryRegisterClick}>
-                                    {sub}
-                                </AccessibleButton>
-                            ),
-                        },
-                    )}
-                </span>
-            );
+            // Check if external registration URL is configured
+            const externalSignupUrl = SdkConfig.get("external_registration_url");
+            
+            if (externalSignupUrl) {
+                // Show external signup link
+                footer = (
+                    <div className="mx_AuthBody_external-signup">
+                        <p>{_t("auth|no_account_yet")}</p>
+                        <a 
+                            href={externalSignupUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="mx_AuthBody_external-signup-button"
+                        >
+                            {_t("auth|create_account_external")}
+                        </a>
+                    </div>
+                );
+            }
+            // If no external URL is configured and registration is disabled, show nothing
         }
 
         return (

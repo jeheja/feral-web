@@ -1,0 +1,185 @@
+<style type="text/css">
+    /* Feral custom welcome page styling */
+    
+    :root {
+        --feral-deep-forest: #0F2C1E;
+        --feral-forest-shadow: #0a1f15;
+        --feral-golden: #D4AF37;
+        --feral-golden-bright: #F1C40F;
+        --feral-cream: #FFF8E7;
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--feral-deep-forest) 0%, var(--feral-forest-shadow) 100%);
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .mx_Parent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 25px 35px;
+        color: var(--feral-cream);
+        min-height: 100vh;
+    }
+
+    .mx_Logo {
+        height: 80px;
+        margin-top: 2px;
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+    }
+
+    .mx_ButtonGroup {
+        margin-top: 30px;
+    }
+
+    .mx_ButtonRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        margin: 12px 0 0;
+    }
+
+    .mx_ButtonRow > * {
+        margin: 0 10px;
+    }
+
+    .mx_ButtonRow > *:first-child {
+        margin-left: 0;
+    }
+
+    .mx_ButtonRow > *:last-child {
+        margin-right: 0;
+    }
+
+    .mx_ButtonParent {
+        display: flex;
+        padding: 12px 32px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        min-width: 180px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .mx_ButtonLabel {
+        margin: 0;
+    }
+
+    .mx_Header_title {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 30px 0 0;
+        color: var(--feral-cream);
+    }
+
+    .mx_Header_subtitle {
+        font-size: 16px;
+        font-weight: normal;
+        margin: 12px 0 0;
+        color: rgba(255, 248, 231, 0.8);
+    }
+
+    .mx_ButtonSignIn {
+        background-color: var(--feral-golden);
+        color: var(--feral-deep-forest) !important;
+        border: 2px solid var(--feral-golden);
+    }
+
+    .mx_ButtonSignIn:hover {
+        background-color: var(--feral-golden-bright);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .mx_ButtonCreateAccount {
+        background-color: transparent;
+        color: var(--feral-golden) !important;
+        border: 2px solid var(--feral-golden);
+    }
+
+    .mx_ButtonCreateAccount:hover {
+        background-color: rgba(212, 175, 55, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    .mx_SecondaryButton {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--feral-cream) !important;
+        border: 1px solid rgba(255, 248, 231, 0.2);
+    }
+
+    .mx_SecondaryButton:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 248, 231, 0.3);
+    }
+
+    .mx_WelcomePage:not(.mx_WelcomePage_loggedIn) .mx_WelcomePage_guestFunctions {
+        display: none;
+    }
+
+    .mx_ButtonRow.mx_WelcomePage_guestFunctions {
+        margin-top: 20px;
+    }
+    
+    .mx_ButtonRow.mx_WelcomePage_guestFunctions > div {
+        margin: 0 auto;
+    }
+
+    .mx_ExternalSignup_note {
+        margin-top: 20px;
+        font-size: 14px;
+        color: rgba(255, 248, 231, 0.7);
+    }
+
+    @media only screen and (max-width: 480px) {
+        .mx_ButtonRow {
+            flex-direction: column;
+        }
+
+        .mx_ButtonRow > * {
+            margin: 0 0 10px 0;
+            width: 100%;
+        }
+
+        .mx_ButtonParent {
+            min-width: 200px;
+        }
+
+        .mx_Header_title {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<div class="mx_Parent">
+    <img src="$logoUrl" alt="Feral" class="mx_Logo" />
+    <h1 class="mx_Header_title">_t("welcome_to_element")</h1>
+    <h4 class="mx_Header_subtitle">Welcome to the Feralism Community</h4>
+    <div class="mx_ButtonGroup">
+        <div class="mx_ButtonRow">
+            <a href="#/login" class="mx_ButtonParent mx_ButtonSignIn">
+                <div class="mx_ButtonLabel">_t("action|sign_in")</div>
+            </a>
+            <a href="https://feralisme.fr/inscription/" target="_blank" rel="noopener noreferrer" class="mx_ButtonParent mx_ButtonCreateAccount">
+                <div class="mx_ButtonLabel">_t("action|create_account")</div>
+            </a>
+        </div>
+        <p class="mx_ExternalSignup_note">Creating an account will redirect you to feralisme.fr</p>
+        <div class="mx_ButtonRow mx_WelcomePage_guestFunctions">
+            <div>
+                <a href="#/directory" class="mx_ButtonParent mx_SecondaryButton">
+                    <div class="mx_ButtonLabel">_t("action|explore_rooms")</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
