@@ -238,6 +238,13 @@ if (os.platform() === "linux") {
         // Remove sqlcipher dependency when using bundled
         config.deb.recommends = config.deb.recommends?.filter((d) => d !== "libsqlcipher0");
     }
+
+    // Feral: our variant ships with our own package metadata and without
+    // the element.io apt keyring recommendation.
+    if (variant.productName === "Feral") {
+        config.deb.fpm.push("--vendor", "Feralism <contact@feralisme.fr>", "--maintainer", "Feralism <contact@feralisme.fr>");
+        config.deb.recommends = config.deb.recommends?.filter((d) => d !== "element-io-archive-keyring");
+    }
 }
 
 // Treat certain warnings as a fatal error

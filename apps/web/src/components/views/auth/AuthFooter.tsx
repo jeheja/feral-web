@@ -10,15 +10,12 @@ Please see LICENSE files in the repository root for full details.
 import React, { type JSX, type ReactElement } from "react";
 
 import SdkConfig from "../../../SdkConfig";
-import { _t } from "../../../languageHandler";
 
 const AuthFooter = (): ReactElement => {
     const brandingConfig = SdkConfig.getObject("branding");
-    const links = brandingConfig?.get("auth_footer_links") ?? [
-        { text: "Blog", url: "https://element.io/blog" },
-        { text: "Mastodon", url: "https://mastodon.matrix.org/@Element" },
-        { text: "GitHub", url: "https://github.com/element-hq/element-web" },
-    ];
+    // Feral: footer links come from config only; no hardcoded defaults and
+    // no protocol branding — users only need to know the Feral name.
+    const links = brandingConfig?.get("auth_footer_links") ?? [];
 
     const authFooterLinks: JSX.Element[] = [];
     for (const linkEntry of links) {
@@ -32,9 +29,6 @@ const AuthFooter = (): ReactElement => {
     return (
         <footer className="mx_AuthFooter" role="contentinfo">
             {authFooterLinks}
-            <a href="https://matrix.org" target="_blank" rel="noreferrer noopener">
-                {_t("powered_by_matrix")}
-            </a>
         </footer>
     );
 };
