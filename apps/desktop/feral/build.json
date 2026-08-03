@@ -1,0 +1,9 @@
+{
+    "appId": "app.feral.desktop",
+    "name": "feral-desktop",
+    "productName": "Feral",
+    "description": "Feral: private communication for the Feralism community",
+    "linux.executableName": "feral",
+    "linux.deb.name": "feral-desktop",
+    "protocols": ["feral"]
+}
